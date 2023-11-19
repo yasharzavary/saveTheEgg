@@ -1,5 +1,5 @@
 from tkinter import *
-
+from dataBase import addNewOne
 
 def addnewTeam(event):
     """_summary_
@@ -13,7 +13,16 @@ def addnewTeam(event):
         Args:
             event (_type_): _description_
         """
-        print('add')
+
+        name = nameEntry.get()
+        member1 = member1Entry.get()
+        member2 = member2Entry.get()
+        member3 = member3Entry.get()
+        member4 = member4Entry.get()
+        weight = weightEntry.get()
+        addNewOne(name, weight, member1, member2, member3, member4)
+
+        
     addNewRoot = Tk()
     # title of the adding part
     addNewRoot.title('add new team')
