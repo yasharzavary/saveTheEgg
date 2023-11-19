@@ -2,8 +2,26 @@ from tkinter import *
 
 
 def addnewTeam(event):
-    pass
-
+    """_summary_
+        our adding part that we can use it to add new team to the databas
+    Args:
+        event (_type_): _description_
+    """
+    addNewRoot = Tk()
+    # title of the adding part
+    addNewRoot.title('add new team')
+    # icon of the adding part
+    addNewRoot.iconbitmap('icons//addNewOne.ico')
+    addNewRoot.configure(bg='#EAD7BB')
+    # geometry of the adding part
+    addNewRoot.geometry('%dx%d+%d+%d'%(300,300,1100,300))
+    
+    
+    
+    
+    addNewRoot.mainloop()
+    
+    
 def mainPage():
     """_summary_
         this will show us main page that we can add update and show score board button in this part
