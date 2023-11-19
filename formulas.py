@@ -1,4 +1,4 @@
-from dataBase import getData
+from dataBase import getData, updateFinalScores
 
 def weightScore(wList):
     """_summary_
@@ -26,7 +26,7 @@ def timeScore(tList):
     maxT = max(tList)
     minT = min(tList)
     # if max and min time is simalar, it will return one zero based list
-    if maxT == minT: return [0]*len(wList)
+    if maxT == minT: return [0]*len(tList)
     # find diff between max and min time
     tDiff = (maxT - minT)
     # return time scores
@@ -42,14 +42,17 @@ def calculateScore():
     # if we have two or above person, it will calculate scores
     if len(data)>1:
         # find basic scores from the datas
-        wScore = weightScore([team[9] for team in data])
-        tScore = timeScore([team[6] for team in data]) 
-        createvity = [team[11] for team in data]
-        outScore = [team[12]*250 for team in data]
-        grandScore = [team[13]*25 for team in data]
-        EIF = [team[14] for team in data]
+        wScore = weightScore([team[8] for team in data])
+        tScore = timeScore([team[5] for team in data]) 
+        createvity = [team[10] for team in data]
+        outScore = [team[11]*250 for team in data]
+        grandScore = [team[12]*25 for team in data]
+        EIF = [team[13] for team in data]
         # calculate final score depend on the mian formula
         finalScore = [(outScore[i]+wScore[i]+tScore[i]+grandScore[i])*EIF[i] + createvity[i] for i in range(len(data))]
+        print(finalScore)
+        # send finalScores to update the database
+        updateFinalScores(finalScore)
         # send finalscores to the show score part
         return 
         

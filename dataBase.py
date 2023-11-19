@@ -1,6 +1,9 @@
 from mysql.connector import Connect, Error
 
 def getData():
+    """_summary_
+        this function will get us datas that exist in the database
+    """
     with Connect(host='localhost', port='3306', user='root',
                 password='Yasharzavary360', database='saveTheEgg') as conn:
         pointer = conn.cursor()
@@ -10,8 +13,22 @@ def getData():
             dataList.append(team)
         return dataList
 
-def update():
-    pass
+def updateFinalScores(fList):
+    """_summary_
+        this function change finalpoints of the compition members
+    Args:
+        fList(list): list of the scores
+    """
+    with Connect(host='localhost', port='3306', user='root',
+                password='Yasharzavary360', database='saveTheEgg') as conn:
+        pointer=conn.cursor()
+        pointer.execute('select * from peoplescore')
+        idList=[]
+        for team in pointer:
+            idList.append(team[0])
+        for i in range(len(idList)):
+            pointer.execute("update peoplescore set finalScore="+str(fList[i])+"where id="+str(idList[i]))
+        conn.commit()
 
 def addNewOne(name, weight, member1='', member2='', member3='',member4=''):
     """_summary_
