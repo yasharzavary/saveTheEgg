@@ -13,7 +13,6 @@ def addnewTeam(event):
         Args:
             event (_type_): _description_
         """
-
         name = nameEntry.get()
         member1 = member1Entry.get()
         member2 = member2Entry.get()

@@ -1,5 +1,14 @@
 from mysql.connector import Connect, Error
 
+def getData():
+    with Connect(host='localhost', port='3306', user='root',
+                password='Yasharzavary360', database='saveTheEgg') as conn:
+        pointer = conn.cursor()
+        pointer.execute('select * from peopleScore')
+        dataList = []
+        for team in pointer:
+            dataList.append(team)
+        return dataList
 
 def update():
     pass
@@ -22,9 +31,10 @@ def addNewOne(name, weight, member1='', member2='', member3='',member4=''):
                         values (%s,%s,%s,%s,%s,%s)""",[(name,member1,member2,member3,member4,weight)])
             conn.commit()
     except Error as error:
-        print(error)
+        print(error)   
         
         
+          
 
 
 
