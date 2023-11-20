@@ -30,6 +30,9 @@ def updateFinalScores(fList):
             pointer.execute("update peoplescore set finalScore="+str(fList[i])+"where id="+str(idList[i]))
         conn.commit()
 
+def updateCompData(teamName, cTime, cCreativeity, cEgg, cWhere, cEIF):
+    pass
+
 def addNewOne(name, weight, member1='', member2='', member3='',member4=''):
     """_summary_
     this function will connect to the database and add one new team with team members to the database.

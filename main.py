@@ -1,5 +1,5 @@
 from tkinter import *
-from dataBase import addNewOne, getData
+from dataBase import addNewOne, getData, updateCompData
 from functools import partial
 
 def addnewTeam(event):
@@ -105,7 +105,16 @@ def updateTeam(event):
             update panel of one team that we can change one teams info after comp
         """
         def change(event):
-            pass
+            """_summary_
+                change part that send data to the database to update the data 
+            """
+            cTime = timeEntry.get()
+            cCreate = creativeEntry.get()
+            cEggComeOut = eggComeEntry.get()
+            cWhereCome = whereComeEntry.get()
+            cEIF = EIFEntry.get()
+            updateCompData(teamName, cTime, cCreate, cEggComeOut, cWhereCome, cEIF)
+            
         # our changing(update) info part
         teamInfoPage = Tk()
         teamInfoPage.geometry('%dx%d+%d+%d'%(300,300,100,300))
@@ -162,8 +171,11 @@ def updateTeam(event):
         EIFEntry.pack(side='left')   
         
         # button of the update part
-        updateBut = Button(master=teamInfoPage, text='update')
-        updateBut.bind('<Button>', )
+        updateButton = Button(master= teamInfoPage, text='update', bd='5',  bg='#F5F7F8')
+        updateButton.bind('<Button>', change)
+        updateButton.bind('<Enter>', lambda x: updateButton.config(bg='#495E57'))
+        updateButton.bind('<Leave>', lambda x: updateButton.config(bg='#F5F7F8'))
+        updateButton.pack()
          
         # mainloop of the Tk  
         teamInfoPage.mainloop()
