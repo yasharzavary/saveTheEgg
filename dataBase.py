@@ -27,11 +27,30 @@ def updateFinalScores(fList):
         for team in pointer:
             idList.append(team[0])
         for i in range(len(idList)):
-            pointer.execute("update peoplescore set finalScore="+str(fList[i])+"where id="+str(idList[i]))
+            pointer.execute("update peoplescore set finalScore="+str(fList[i])+" where id="+str(idList[i]))
         conn.commit()
 
 def updateCompData(teamName, cTime, cCreativeity, cEgg, cWhere, cEIF):
-    pass
+    """_summary_
+        # after comp, this function will update the data of the team into the database for score calculate
+    """
+    with Connect(host='localhost', port='3306', user='root',
+                password='Yasharzavary360', database='saveTheEgg') as conn:
+        changePointer = conn.cursor()
+        
+        # find id of the teamName
+        changePointer.execute('select * from peopleScore')
+        for team in changePointer:
+            if team[1] == teamName:
+                findId = team[0]
+        
+        # info update part
+        changePointer.execute('update peopleScore set timeAmount='+str(cTime)+" where id="+str(findId))
+        changePointer.execute('update peopleScore set Creativity='+str(cCreativeity)+" where id="+str(findId))
+        changePointer.execute('update peopleScore set eggComeOut='+str(cEgg)+" where id="+str(findId))
+        changePointer.execute('update peopleScore set whereCome='+str(cWhere)+" where id="+str(findId))
+        changePointer.execute('update peopleScore set EIF='+str(cEIF)+" where id="+str(findId))
+        conn.commit()
 
 def addNewOne(name, weight, member1='', member2='', member3='',member4=''):
     """_summary_

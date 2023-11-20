@@ -113,7 +113,7 @@ def updateTeam(event):
             cEggComeOut = eggComeEntry.get()
             cWhereCome = whereComeEntry.get()
             cEIF = EIFEntry.get()
-            updateCompData(teamName, cTime, cCreate, cEggComeOut, cWhereCome, cEIF)
+            updateCompData(name, cTime, cCreate, cEggComeOut, cWhereCome, cEIF)
             
         # our changing(update) info part
         teamInfoPage = Tk()
