@@ -1,5 +1,6 @@
 from tkinter import *
-from dataBase import addNewOne
+from dataBase import addNewOne, getData
+from functools import partial
 
 def addnewTeam(event):
     """_summary_
@@ -94,6 +95,75 @@ def addnewTeam(event):
     
 
     addNewRoot.mainloop()
+
+def updateTeam(event):
+    """_summary_
+        this will update one team's info
+    """
+    def updateOne(name):
+        print(name)
+        
+    # update page gui
+    updatePage = Tk()
+    updatePage.title('update team info')
+    updatePage.iconbitmap('icons\\update.ico')
+    updatePage.geometry('%dx%d+%d+%d'%(1200,500,200,0))
+    
+    # get data of the database
+    data=getData()
+    # make frames for better usage
+    frame1 = Frame(master=updatePage, width=400, height=500, bg='#DDF2FD')
+    frame1.pack_propagate(False)
+    frame1.pack(side='left')
+    frame2 = Frame(master=updatePage, width=400, height=500, bg='#9BBEC8')
+    frame2.pack_propagate(False)
+    frame2.pack(side='left')   
+    frame3 = Frame(master=updatePage, width=400, height=500, bg='#427D9D')
+    frame3.pack_propagate(False)
+    frame3.pack(side='left') 
+    
+    # get name of the teams
+    teamNames = [team[1] for team in data]
+    
+    # button part that make buttons of the teams for us
+    if len(data) <= 15:
+        for i in range(len(teamNames)):
+            nameTemp = teamNames[i]
+            butFunc = partial(updateOne, nameTemp)
+            button = Button(master=frame1, text=nameTemp, command=butFunc)
+            button.pack()
+    elif len(data) <=30:
+        for i in range(15):
+            nameTemp = teamNames[i]
+            butFunc = partial(updateOne, nameTemp)
+            button = Button(master=frame1, text=nameTemp, command=butFunc)
+            button.pack()
+        
+        for i in range(15, len(teamNames)):
+            nameTemp = teamNames[i]
+            butFunc = partial(updateOne, nameTemp)
+            button = Button(master=frame2, text=nameTemp, command=butFunc)
+            button.pack()   
+    else:
+        for i in range(15):
+            nameTemp = teamNames[i]
+            butFunc = partial(updateOne, nameTemp)
+            button = Button(master=frame1, text=nameTemp, command=butFunc)
+            button.pack()
+        
+        for i in range(15, 30):
+            nameTemp = teamNames[i]
+            butFunc = partial(updateOne, nameTemp)
+            button = Button(master=frame2, text=nameTemp, command=butFunc)
+            button.pack()               
+         
+        for i in range(30, len(teamNames)):
+            nameTemp = teamNames[i]
+            butFunc = partial(updateOne, nameTemp)
+            button = Button(master=frame3, text=nameTemp, command=butFunc)
+            button.pack()           
+         
+    updatePage.mainloop()
     
     
 def mainPage():
@@ -128,6 +198,11 @@ def mainPage():
     addNewButton.bind('<Leave>', lambda x: addNewButton.config(bg='#F5F7F8'))
     addNewButton.pack()
     
+    updateButton = Button(master= mainPageRoot, text='update', bd='5', width=10, height=2, bg='#F5F7F8')
+    updateButton.bind('<Button>', updateTeam)
+    updateButton.bind('<Enter>', lambda x: updateButton.config(bg='#495E57'))
+    updateButton.bind('<Leave>', lambda x: updateButton.config(bg='#F5F7F8'))
+    updateButton.pack()
 
     # main loop of the main page
     mainPageRoot.mainloop()
