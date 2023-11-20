@@ -20,7 +20,7 @@ def showScoreBoard(event):
                 head4.grid(row=i+1, column=4)
                 head5 = Label(scoreFrame, text=data[i][11], width=25, height = 5 , relief='solid', bg='#C7DCA7')
                 head5.grid(row=i+1, column=3)
-                head6 = Label(scoreFrame, text=data[i][12], width=25, height = 5 , relief='solid', bg='#C7DCA7')
+                head6 = Label(scoreFrame, text=data[i][12]*25, width=25, height = 5 , relief='solid', bg='#C7DCA7')
                 head6.grid(row=i+1, column=2)
                 head7 = Label(scoreFrame, text=data[i][13], width=25, height = 5 , relief='solid', bg='#C7DCA7')
                 head7.grid(row=i+1, column=1)
@@ -60,7 +60,7 @@ def showScoreBoard(event):
     # headers of the shedule
     head1 = Label(scoreFrame, text='نام تیم', width=25, height = 5, relief='solid', bg='#D2E0FB')
     head1.grid(row=0, column=7)
-    head2 = Label(scoreFrame, text='زمان', width=25, height = 5, relief='solid', bg='#D2E0FB')
+    head2 = Label(scoreFrame, text='(ثانیه)زمان', width=25, height = 5, relief='solid', bg='#D2E0FB')
     head2.grid(row=0, column=6)
     head3 = Label(scoreFrame, text='وزن', width=25, height = 5 , relief='solid', bg='#D2E0FB')
     head3.grid(row=0, column=5)

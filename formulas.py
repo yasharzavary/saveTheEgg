@@ -33,7 +33,7 @@ def timeScore(tList):
     return [100*(maxT - cT)/tDiff for cT in tList]    
 
 
-def calculateScore():
+def calculateScore(event=''):
     """_summary_
         main function that get scores from the database and calculate the final score from that
     """
@@ -49,7 +49,7 @@ def calculateScore():
         grandScore = [float(team[12])*25 for team in data]
         EIF = [float(team[13]) for team in data]
         # calculate final score depend on the mian formula
-        finalScore = [(outScore[i]+wScore[i]+tScore[i]+grandScore[i])*EIF[i] + createvity[i] for i in range(len(data))]
+        finalScore = [(wScore[i]+tScore[i]+grandScore[i])*EIF[i] + outScore[i] + createvity[i] for i in range(len(data))]
         print(finalScore)
         # send finalScores to update the database
         updateFinalScores(finalScore)

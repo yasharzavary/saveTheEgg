@@ -291,6 +291,12 @@ def mainPage():
     scoreboardButton.bind('<Leave>', lambda x: scoreboardButton.config(bg='#F5F7F8'))
     scoreboardButton.pack()
 
+    calcScore = Button(master= mainPageRoot, text='calculate score', bd='5', width=10, height=2, bg='#F5F7F8')
+    calcScore.bind('<Button>', calculateScore)
+    calcScore.bind('<Enter>', lambda x: calcScore.config(bg='#495E57'))
+    calcScore.bind('<Leave>', lambda x: calcScore.config(bg='#F5F7F8'))
+    calcScore.pack()
+    
     # main loop of the main page
     mainPageRoot.mainloop()
 
