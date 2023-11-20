@@ -42,19 +42,14 @@ def calculateScore():
     # if we have two or above person, it will calculate scores
     if len(data)>1:
         # find basic scores from the datas
-        wScore = weightScore([team[8] for team in data])
-        tScore = timeScore([team[5] for team in data]) 
-        createvity = [team[10] for team in data]
-        outScore = [team[11]*250 for team in data]
-        grandScore = [team[12]*25 for team in data]
-        EIF = [team[13] for team in data]
+        wScore = weightScore([float(team[8]) for team in data])
+        tScore = timeScore([float(team[6]) for team in data]) 
+        createvity = [float(team[10]) for team in data]
+        outScore = [float(team[11])*250 for team in data]
+        grandScore = [float(team[12])*25 for team in data]
+        EIF = [float(team[13]) for team in data]
         # calculate final score depend on the mian formula
         finalScore = [(outScore[i]+wScore[i]+tScore[i]+grandScore[i])*EIF[i] + createvity[i] for i in range(len(data))]
         print(finalScore)
         # send finalScores to update the database
         updateFinalScores(finalScore)
-        # send finalscores to the show score part
-        return 
-        
-        
-calculateScore()

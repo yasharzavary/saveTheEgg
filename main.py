@@ -1,6 +1,8 @@
 from tkinter import *
 from dataBase import addNewOne, getData, updateCompData
 from functools import partial
+from formulas import calculateScore
+from showScore import showScoreBoard
 
 def addnewTeam(event):
     """_summary_
@@ -21,7 +23,7 @@ def addnewTeam(event):
         member4 = member4Entry.get()
         weight = weightEntry.get()
         addNewOne(name, weight, member1, member2, member3, member4)
-
+        
         
     addNewRoot = Tk()
     # title of the adding part
@@ -114,6 +116,8 @@ def updateTeam(event):
             cWhereCome = whereComeEntry.get()
             cEIF = EIFEntry.get()
             updateCompData(name, cTime, cCreate, cEggComeOut, cWhereCome, cEIF)
+            calculateScore()
+            
             
         # our changing(update) info part
         teamInfoPage = Tk()
@@ -280,6 +284,12 @@ def mainPage():
     updateButton.bind('<Enter>', lambda x: updateButton.config(bg='#495E57'))
     updateButton.bind('<Leave>', lambda x: updateButton.config(bg='#F5F7F8'))
     updateButton.pack()
+
+    scoreboardButton = Button(master= mainPageRoot, text='scoreboard', bd='5', width=10, height=2, bg='#F5F7F8')
+    scoreboardButton.bind('<Button>', showScoreBoard)
+    scoreboardButton.bind('<Enter>', lambda x: scoreboardButton.config(bg='#495E57'))
+    scoreboardButton.bind('<Leave>', lambda x: scoreboardButton.config(bg='#F5F7F8'))
+    scoreboardButton.pack()
 
     # main loop of the main page
     mainPageRoot.mainloop()
