@@ -101,7 +101,72 @@ def updateTeam(event):
         this will update one team's info
     """
     def updateOne(name):
-        print(name)
+        """_summary_
+            update panel of one team that we can change one teams info after comp
+        """
+        def change(event):
+            pass
+        # our changing(update) info part
+        teamInfoPage = Tk()
+        teamInfoPage.geometry('%dx%d+%d+%d'%(300,300,100,300))
+        teamInfoPage.title('update info')
+        teamInfoPage.iconbitmap('icons\\info.ico')
+        
+        # say that we wanna to cahnge who?
+        whoLabel = Label(master=teamInfoPage, text=f'you are changing info of the team {name}')
+        whoLabel.pack()
+        
+        # time part
+        timeFrame = Frame(master=teamInfoPage, width=300, height=20)
+        timeFrame.pack_propagate(False)
+        timeFrame.pack(side='top')
+        timeLabel = Label(master=timeFrame, text='time amount: ')
+        timeLabel.pack(side='left')
+        timeEntry = Entry(master=timeFrame)
+        timeEntry.pack(side='left')
+
+        # creativity part
+        creativeFrame = Frame(master=teamInfoPage, width=300, height=20)
+        creativeFrame.pack_propagate(False)
+        creativeFrame.pack(side='top')
+        cretiveLabel = Label(master=creativeFrame, text='creativity score: ')
+        cretiveLabel.pack(side='left')
+        creativeEntry = Entry(master=creativeFrame)
+        creativeEntry.pack(side='left')       
+
+        # egg come out or not?
+        eggComeFrame = Frame(master=teamInfoPage, width=300, height=20)
+        eggComeFrame.pack_propagate(False)
+        eggComeFrame.pack(side='top')
+        eggComeLabel = Label(master=eggComeFrame, text='egg come our?: ')
+        eggComeLabel.pack(side='left')
+        eggComeEntry = Entry(master=eggComeFrame)
+        eggComeEntry.pack(side='left')   
+
+        # land part
+        whereComeFrame = Frame(master=teamInfoPage, width=300, height=20)
+        whereComeFrame.pack_propagate(False)
+        whereComeFrame.pack(side='top')
+        whereComeLabel = Label(master=whereComeFrame, text='where egg land?: ')
+        whereComeLabel.pack(side='left')
+        whereComeEntry = Entry(master=whereComeFrame)
+        whereComeEntry.pack(side='left')          
+
+        # EIF part
+        EIFFrame = Frame(master=teamInfoPage, width=300, height=20)
+        EIFFrame.pack_propagate(False)
+        EIFFrame.pack(side='top')
+        EIFLabel = Label(master=EIFFrame, text='broke/intact/cracked: ')
+        EIFLabel.pack(side='left')
+        EIFEntry = Entry(master=EIFFrame)
+        EIFEntry.pack(side='left')   
+        
+        # button of the update part
+        updateBut = Button(master=teamInfoPage, text='update')
+        updateBut.bind('<Button>', )
+         
+        # mainloop of the Tk  
+        teamInfoPage.mainloop()
         
     # update page gui
     updatePage = Tk()
